@@ -1,0 +1,22 @@
+{
+  "name": "SwipeUpView",
+  "version": "0.1.0",
+  "summary": "A short description of SwipeUpView.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/kadirkemal/SwipeUpView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "kadirkemal": "kkdursun@yahoo.com"
+  },
+  "source": {
+    "git": "https://github.com/kadirkemal/SwipeUpView.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SwipeUpView/Classes/**/*"
+}
