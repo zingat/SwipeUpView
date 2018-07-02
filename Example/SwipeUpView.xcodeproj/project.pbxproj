@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		071E9DAE20EA1519000DED6F /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 071E9DAD20EA1519000DED6F /* CHANGELOG.md */; };
 		071E9DB020EA199B000DED6F /* BottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 071E9DAF20EA199B000DED6F /* BottomView.xib */; };
 		074A1EC220E61EBF002464DE /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1EC120E61EBF002464DE /* BottomView.swift */; };
+		07C1412F20EA5C6500F4845E /* SwipeUpView.gif in Resources */ = {isa = PBXBuildFile; fileRef = 07C1412D20EA5C6500F4845E /* SwipeUpView.gif */; };
+		07C1413020EA5C6500F4845E /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 07C1412E20EA5C6500F4845E /* CHANGELOG.md */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -32,9 +33,10 @@
 
 /* Begin PBXFileReference section */
 		036F3836292300DC17042BD5 /* Pods-SwipeUpView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeUpView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeUpView_Tests/Pods-SwipeUpView_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		071E9DAD20EA1519000DED6F /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		071E9DAF20EA199B000DED6F /* BottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomView.xib; sourceTree = "<group>"; };
 		074A1EC120E61EBF002464DE /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		07C1412D20EA5C6500F4845E /* SwipeUpView.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = SwipeUpView.gif; path = ../SwipeUpView.gif; sourceTree = "<group>"; };
+		07C1412E20EA5C6500F4845E /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		2B5D81EE6AEDE5FCFF6FABE4 /* Pods_SwipeUpView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwipeUpView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* SwipeUpView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeUpView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -140,10 +142,11 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				07C1412E20EA5C6500F4845E /* CHANGELOG.md */,
+				07C1412D20EA5C6500F4845E /* SwipeUpView.gif */,
 				A633CB9628D6C101F88AE8FA /* SwipeUpView.podspec */,
 				8A2E3BFECC1A3B0F80A911EF /* README.md */,
 				70E4064B11E634E3F967B704 /* LICENSE */,
-				071E9DAD20EA1519000DED6F /* CHANGELOG.md */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
@@ -258,10 +261,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				07C1413020EA5C6500F4845E /* CHANGELOG.md in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				07C1412F20EA5C6500F4845E /* SwipeUpView.gif in Resources */,
 				071E9DB020EA199B000DED6F /* BottomView.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				071E9DAE20EA1519000DED6F /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
