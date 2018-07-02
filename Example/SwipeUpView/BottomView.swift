@@ -38,4 +38,7 @@ public class BottomView: UIView  {
         self.imageView.image = UIImage(named: "zingat_yatay_logo")
     }
     
+    
+    
+    
 }
