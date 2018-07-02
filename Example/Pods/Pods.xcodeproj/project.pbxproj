@@ -8,12 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		043431A4FEBB6993CBBED684FF80EF8A /* Pods-SwipeUpView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EF2E71E2B6C4A10FEAE3FD91EE9EE49 /* Pods-SwipeUpView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		074A1EBA20E61BAA002464DE /* SwipeUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1EB920E61BAA002464DE /* SwipeUpView.swift */; };
-		074A1EBE20E61BCF002464DE /* SwipeUpViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1EBB20E61BCF002464DE /* SwipeUpViewDatasource.swift */; };
-		074A1EBF20E61BCF002464DE /* SwipeUpViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1EBC20E61BCF002464DE /* SwipeUpViewDelegate.swift */; };
-		074A1EC320E621CD002464DE /* SwipeUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1EB920E61BAA002464DE /* SwipeUpView.swift */; };
-		074A1EC520E621D1002464DE /* SwipeUpViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1EBB20E61BCF002464DE /* SwipeUpViewDatasource.swift */; };
-		074A1EC620E621D4002464DE /* SwipeUpViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1EBC20E61BCF002464DE /* SwipeUpViewDelegate.swift */; };
+		07C1413420EA65D600F4845E /* SwipeUpViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1413120EA65D600F4845E /* SwipeUpViewDelegate.swift */; };
+		07C1413520EA65D600F4845E /* SwipeUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1413220EA65D600F4845E /* SwipeUpView.swift */; };
+		07C1413620EA65D600F4845E /* SwipeUpViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1413320EA65D600F4845E /* SwipeUpViewDatasource.swift */; };
 		8E76B5DAB0191BC1578A31A285116FF5 /* Pods-SwipeUpView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DF58C1B20A9E768B1F0C6A64E5E09AAF /* Pods-SwipeUpView_Example-dummy.m */; };
 		8F166260F22C04313BF95806CBA03B2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		925DA0756041FF091BC21D84E1355674 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
@@ -36,9 +33,9 @@
 
 /* Begin PBXFileReference section */
 		011F91CEFB79BE1D2037611430DF257D /* Pods-SwipeUpView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwipeUpView_Example.release.xcconfig"; sourceTree = "<group>"; };
-		074A1EB920E61BAA002464DE /* SwipeUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeUpView.swift; sourceTree = "<group>"; };
-		074A1EBB20E61BCF002464DE /* SwipeUpViewDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeUpViewDatasource.swift; sourceTree = "<group>"; };
-		074A1EBC20E61BCF002464DE /* SwipeUpViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeUpViewDelegate.swift; sourceTree = "<group>"; };
+		07C1413120EA65D600F4845E /* SwipeUpViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeUpViewDelegate.swift; path = SwipeUpView/Classes/SwipeUpViewDelegate.swift; sourceTree = "<group>"; };
+		07C1413220EA65D600F4845E /* SwipeUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeUpView.swift; path = SwipeUpView/Classes/SwipeUpView.swift; sourceTree = "<group>"; };
+		07C1413320EA65D600F4845E /* SwipeUpViewDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeUpViewDatasource.swift; path = SwipeUpView/Classes/SwipeUpViewDatasource.swift; sourceTree = "<group>"; };
 		0A26DED61D8E6F603D0A42EF0738219C /* SwipeUpView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwipeUpView-dummy.m"; sourceTree = "<group>"; };
 		0EC7884CC036A74058E723785322549D /* Pods-SwipeUpView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwipeUpView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1171F2187621F73125D3D257369CCC27 /* SwipeUpView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwipeUpView-prefix.pch"; sourceTree = "<group>"; };
@@ -123,9 +120,9 @@
 		255591541196CCCAD932FD307A5D509E /* SwipeUpView */ = {
 			isa = PBXGroup;
 			children = (
-				074A1EB920E61BAA002464DE /* SwipeUpView.swift */,
-				074A1EBB20E61BCF002464DE /* SwipeUpViewDatasource.swift */,
-				074A1EBC20E61BCF002464DE /* SwipeUpViewDelegate.swift */,
+				07C1413220EA65D600F4845E /* SwipeUpView.swift */,
+				07C1413320EA65D600F4845E /* SwipeUpViewDatasource.swift */,
+				07C1413120EA65D600F4845E /* SwipeUpViewDelegate.swift */,
 				402E263CC0299FF76D31A20C9A2215B7 /* Pod */,
 				9234526CF8B9E46FC7BD383B3055EE83 /* Support Files */,
 			);
@@ -357,10 +354,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				074A1EBA20E61BAA002464DE /* SwipeUpView.swift in Sources */,
-				074A1EBE20E61BCF002464DE /* SwipeUpViewDatasource.swift in Sources */,
+				07C1413620EA65D600F4845E /* SwipeUpViewDatasource.swift in Sources */,
+				07C1413520EA65D600F4845E /* SwipeUpView.swift in Sources */,
+				07C1413420EA65D600F4845E /* SwipeUpViewDelegate.swift in Sources */,
 				8E76B5DAB0191BC1578A31A285116FF5 /* Pods-SwipeUpView_Example-dummy.m in Sources */,
-				074A1EBF20E61BCF002464DE /* SwipeUpViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,9 +365,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				074A1EC520E621D1002464DE /* SwipeUpViewDatasource.swift in Sources */,
-				074A1EC620E621D4002464DE /* SwipeUpViewDelegate.swift in Sources */,
-				074A1EC320E621CD002464DE /* SwipeUpView.swift in Sources */,
 				D13E93AC2269EC26476A56C4924557E8 /* SwipeUpView-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
