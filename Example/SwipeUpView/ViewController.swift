@@ -10,32 +10,23 @@ import UIKit
 import SwipeUpView
 
 class ViewController: UIViewController {
-    
-    
     var isOpenCloseControl = true
     
-    lazy var  tabButton : UIButton = {
-        let button = UIButton(type: UIButtonType.system)
-        button.setTitle("TabButton", for: UIControlState.normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.addTarget(self, action: #selector(handleTabButtonTouchUpInside), for: .touchUpInside)
-        return button
+    lazy var bottomView : BottomView = {
+        return BottomView(frame:.zero)
     }()
-    
     
     lazy var swipeUpView : SwipeUpView = {
         let mg = SwipeUpView(frame: .zero, mainView: self.view)
         mg.delegate = self
         mg.datasource = self
         
-        mg.swipeContentView = BottomView(frame:.zero)
+        mg.swipeContentView = bottomView
         
         return mg
     }()
     
-    
-    @objc func handleTabButtonTouchUpInside()  {
-        
+    @IBAction func onClickedButton(_ sender: Any) {
         if isOpenCloseControl  {
             isOpenCloseControl = false
             swipeUpView.openViewPage()
@@ -46,23 +37,12 @@ class ViewController: UIViewController {
             swipeUpView.closeViewPage()
             
         }
-        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
-        self.view.backgroundColor = .blue
-        
-        self.view.addSubview(tabButton)
-        
-        self.tabButton.frame = CGRect(x: 100, y: 200, width: 80, height: 30)
-        
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -97,6 +77,12 @@ extension ViewController : SwipeUpViewDatasource ,SwipeUpViewDelegate {
     
     func swipeUpViewStateWillChange (_ swipeUpView : SwipeUpView, stateIndex : Int){
         NSLog("SwipeUpView state will change to %i", stateIndex)
+        
+        if stateIndex == 2 {
+            bottomView.useVerticalImage()
+        }else{
+            bottomView.useHorizontalImage()
+        }
     }
     
     func swipeUpViewStateDidChange (_ swipeUpView : SwipeUpView, stateIndex : Int){
