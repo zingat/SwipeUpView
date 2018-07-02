@@ -95,28 +95,28 @@ extension ViewController : SwipeUpViewDatasource ,SwipeUpViewDelegate {
         return [0.1 ,0.5, 1]
     }
     
-    func stateWillChange(_ swipeUpView: SwipeUpView, stateIndex: Int) {
-        
+    func swipeUpViewStateWillChange (_ swipeUpView : SwipeUpView, stateIndex : Int){
+        NSLog("SwipeUpView state will change to %i", stateIndex)
     }
     
-    func stateDidChange(_ swipeUpView: SwipeUpView, stateIndex: Int) {
-        
+    func swipeUpViewStateDidChange (_ swipeUpView : SwipeUpView, stateIndex : Int){
+        NSLog("SwipeUpView state did change to %i", stateIndex)
     }
     
-    func stateWillOpen(_ swipeUpView: SwipeUpView) {
-        
+    func swipeUpViewWillOpen (_ swipeUpView : SwipeUpView){
+        NSLog("SwipeUpView state will open")
     }
     
-    func stateDidOpen(_ swipeUpView: SwipeUpView) {
-        
+    func swipeUpViewDidOpen (_ swipeUpView : SwipeUpView){
+        NSLog("SwipeUpView state did open")
     }
     
-    func stateWillClose(_ swipeUpView: SwipeUpView) {
-        
+    func swipeUpViewWillClose (_ swipeUpView : SwipeUpView){
+        NSLog("SwipeUpView state will close")
     }
     
-    func stateDidClose(_ swipeUpView: SwipeUpView) {
-        
+    func swipeUpViewDidClose (_ swipeUpView : SwipeUpView){
+        NSLog("SwipeUpView state did close")
     }
     
     

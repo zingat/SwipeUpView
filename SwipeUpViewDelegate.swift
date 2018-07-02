@@ -9,14 +9,14 @@ import UIKit
 
 public protocol SwipeUpViewDelegate : class {
     
-    func stateWillChange (_ swipeUpView : SwipeUpView, stateIndex : Int);
-    func stateDidChange (_ swipeUpView : SwipeUpView, stateIndex : Int);
+    func swipeUpViewStateWillChange (_ swipeUpView : SwipeUpView, stateIndex : Int);
+    func swipeUpViewStateDidChange (_ swipeUpView : SwipeUpView, stateIndex : Int);
     
-    func stateWillOpen (_ swipeUpView : SwipeUpView);
-    func stateDidOpen (_ swipeUpView : SwipeUpView);
+    func swipeUpViewWillOpen (_ swipeUpView : SwipeUpView);
+    func swipeUpViewDidOpen (_ swipeUpView : SwipeUpView);
     
-    func stateWillClose (_ swipeUpView : SwipeUpView);
-    func stateDidClose (_ swipeUpView : SwipeUpView);
+    func swipeUpViewWillClose (_ swipeUpView : SwipeUpView);
+    func swipeUpViewDidClose (_ swipeUpView : SwipeUpView);
     
 }
 

@@ -11,6 +11,7 @@ public class SwipeUpView: UIView  {
   
     private var isHeaderButtonDirectionToTop = true
     private var activeIndex = 0
+    private var isOpen = false
     
     private weak var mainView : UIView?
     
@@ -161,17 +162,25 @@ public class SwipeUpView: UIView  {
     private func adjustMyHeight(heigthPercentageIndex : Int){
         guard let mainView = self.mainView, let datasource = self.datasource  else { return  }
         
+        self.delegate?.swipeUpViewStateWillChange(self, stateIndex: heigthPercentageIndex)
+        
         activeIndex = heigthPercentageIndex
         let heigthPercentage : CGFloat = datasource.heightPercentages(self)[heigthPercentageIndex]
         
-        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.7, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
             var frame = self.frame
             frame.origin.y = mainView.frame.size.height * (1.0 - heigthPercentage)
             frame.size.height = mainView.frame.size.height * heigthPercentage
             self.frame = frame
             
             self.layoutIfNeeded()
-        }, completion: nil);
+        }, completion: { (_) in
+            self.delegate?.swipeUpViewStateDidChange(self, stateIndex: heigthPercentageIndex)
+            if(self.isOpen == false){
+                self.isOpen = true
+                self.delegate?.swipeUpViewDidOpen(self)
+            }
+        });
         
     }
     private func setupNewIndexForIndex(index : Int) -> Int {
@@ -225,6 +234,7 @@ public class SwipeUpView: UIView  {
         guard let mainView = self.mainView, let datasource = self.datasource else {
             return
         }
+        self.delegate?.swipeUpViewWillOpen(self)
         
         mainView.addSubview(self)
         self.frame = CGRect(x: 0, y: mainView.frame.height , width: mainView.frame.width, height: 0);
@@ -236,12 +246,14 @@ public class SwipeUpView: UIView  {
         
         guard let mainView = self.mainView else { return  }
         
+        self.delegate?.swipeUpViewWillOpen(self)
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.7, options: .curveEaseInOut, animations: {
             
             self.frame = CGRect(x: 0, y: mainView.frame.height , width: mainView.frame.width, height: mainView.frame.height);
             
         }) { (_) in
-            
+            self.delegate?.swipeUpViewDidClose(self)
+            self.isOpen = false
             self.removeFromSuperview()
         }
     }
