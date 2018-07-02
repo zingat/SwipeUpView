@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     
     lazy var swipeUpView : SwipeUpView = {
         let mg = SwipeUpView(frame: .zero, mainView: self.view)
-        //mg.delegate = self
+        mg.delegate = self
         mg.datasource = self
         
         mg.swipeContentView = bottomView
@@ -63,8 +63,16 @@ extension ViewController : SwipeUpViewDatasource ,SwipeUpViewDelegate {
         return 8.0
     }
     
+    func widthOfHeaderButton (_ swipeUpView : SwipeUpView) -> CGFloat {
+        return 50.0
+    }
+    
     func marginOfHeaderButton (_ swipeUpView : SwipeUpView) -> CGFloat {
         return 4.0
+    }
+    
+    func colorOfHeaderButton (_ swipeUpView : SwipeUpView) -> UIColor {
+        return .white
     }
     
     func firstOpenHeightPercentageIndex(_ swipeUpView: SwipeUpView) -> Int {
@@ -72,7 +80,7 @@ extension ViewController : SwipeUpViewDatasource ,SwipeUpViewDelegate {
     }
     
     func heightPercentages(_ swipeUpView: SwipeUpView) -> [CGFloat] {
-        return [0.1 ,0.5, 1]
+        return [0.1, 0.5, 0.95]
     }
     
     func swipeUpViewStateWillChange (_ swipeUpView : SwipeUpView, stateIndex : Int){

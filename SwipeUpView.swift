@@ -43,7 +43,13 @@ public class SwipeUpView: UIView  {
         let button = UIButton(type: UIButtonType.system)
         button.setTitle("", for: UIControlState.normal)
         button.clipsToBounds = true
-        button.backgroundColor = UIColor.darkGray
+        
+        if let datasource = self.datasource {
+            button.backgroundColor = datasource.colorOfHeaderButton(self)
+        }else{
+            button.backgroundColor = UIColor.darkGray
+        }
+        
         button.layer.cornerRadius = 4
         button.addTarget(self, action: #selector(onClickedHeaderButton), for: .touchUpInside)
         return button
@@ -167,7 +173,7 @@ public class SwipeUpView: UIView  {
         activeIndex = heigthPercentageIndex
         let heigthPercentage : CGFloat = datasource.heightPercentages(self)[heigthPercentageIndex]
         
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
             var frame = self.frame
             frame.origin.y = mainView.frame.size.height * (1.0 - heigthPercentage)
             frame.size.height = mainView.frame.size.height * heigthPercentage
@@ -216,10 +222,12 @@ public class SwipeUpView: UIView  {
             self.addConstraints([
                 NSLayoutConstraint(item: self.headerContainerButton, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0),
                 NSLayoutConstraint(item: self.headerContainerButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: datasource.heightOfHeaderButton(self)),
+                NSLayoutConstraint(item: self.headerContainerButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: datasource.widthOfHeaderButton(self)),
                 NSLayoutConstraint(item: self.headerContainerButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0)
                 ])
         }
         
+        swipeContentView.frame.size.width = self.frame.size.width
         swipeContentView.translatesAutoresizingMaskIntoConstraints = false
         self.addConstraints([
             NSLayoutConstraint(item: swipeContentView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: contentX),
@@ -227,6 +235,7 @@ public class SwipeUpView: UIView  {
             NSLayoutConstraint(item: swipeContentView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0),
             NSLayoutConstraint(item: swipeContentView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0),
             ])
+        
     }
     
     public func openViewPage()  {
