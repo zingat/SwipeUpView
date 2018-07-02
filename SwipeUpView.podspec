@@ -23,7 +23,7 @@ SwipeUpView is used to create swipeable views. This is very useful to build swip
 
                        DESC
 
-  s.homepage         = 'https://github.com/kadirkemal/SwipeUpView'
+  s.homepage         = 'https://github.com/zingat/SwipeUpView'
   s.screenshots     = 'https://raw.githubusercontent.com/zingat/SwipeUpView/master/SwipeUpView.gif'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Kadir Kemal Dursun' => 'kkdursun@yahoo.com', 'Yusuf Çınar' => 'yusuf.cinar@zingat.com', }
