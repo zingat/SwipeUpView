@@ -221,7 +221,7 @@ public class SwipeUpView: UIView  {
             
            self.headerContainerButton.frame.origin.y = 0
            self.headerContainerButton.frame.size.width = mainView.frame.size.width / 12
-           self.headerContainerButton.center.x = mainView.center.x -  mainView.frame.size.width / 24
+           self.headerContainerButton.frame.origin.x = mainView.frame.origin.x -  mainView.frame.size.width / 24
            self.headerContainerButton.frame.size.height = datasource.heightOfHeaderButton(self)
         
         }
