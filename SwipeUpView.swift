@@ -23,11 +23,12 @@ public class SwipeUpView: UIView  {
         super.init(frame: frame)
     
         self.isUserInteractionEnabled = true
-        self.backgroundColor = .clear
+        self.backgroundColor = .green
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickedHeaderButton)))
         
         self.mainView = mainView
-        self.frame = CGRect(x: 0, y: mainView.frame.height , width: mainView.frame.width, height: 0);
+
+        self.frame = CGRect(x: 0, y: mainView.frame.height , width: mainView.frame.width, height: mainView.frame.height)
     }
     
     
@@ -160,14 +161,14 @@ public class SwipeUpView: UIView  {
     }
     
     private func adjustMyHeight(heigthPercentageIndex : Int){
-        guard let mainView = self.mainView, let datasource = self.datasource  else { return  }
+        guard let mainView = self.mainView, let datasource = self.datasource , let delegate = self.delegate else { return  }
         
-        self.delegate?.swipeUpViewStateWillChange(self, stateIndex: heigthPercentageIndex)
+        delegate.swipeUpViewStateWillChange(self, stateIndex: heigthPercentageIndex)
         
         activeIndex = heigthPercentageIndex
         let heigthPercentage : CGFloat = datasource.heightPercentages(self)[heigthPercentageIndex]
         
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
             var frame = self.frame
             frame.origin.y = mainView.frame.size.height * (1.0 - heigthPercentage)
             frame.size.height = mainView.frame.size.height * heigthPercentage
@@ -175,12 +176,12 @@ public class SwipeUpView: UIView  {
             
             self.layoutIfNeeded()
         }, completion: { (_) in
-            self.delegate?.swipeUpViewStateDidChange(self, stateIndex: heigthPercentageIndex)
+            delegate.swipeUpViewStateDidChange(self, stateIndex: heigthPercentageIndex)
             if(self.isOpen == false){
                 self.isOpen = true
-                self.delegate?.swipeUpViewDidOpen(self)
+                delegate.swipeUpViewDidOpen(self)
             }
-        });
+        })
         
     }
     private func setupNewIndexForIndex(index : Int) -> Int {
@@ -193,6 +194,7 @@ public class SwipeUpView: UIView  {
         let width = mainView.frame.size.width
         swipeContentView.layer.cornerRadius = 6
         
+        self.swipeContentView?.backgroundColor = .white
         self.addGestureRecognizer(swipeGestureRecognizerUp)
         self.addGestureRecognizer(swipeGestureRecognizerDown)
         
@@ -204,55 +206,55 @@ public class SwipeUpView: UIView  {
         frameItemContainerView(width: width)
     }
     
+    func frameControl() {
+        
+     
+    }
     
     private  func frameItemContainerView(width : CGFloat) {
-        guard let datasource = self.datasource , let swipeContentView = self.swipeContentView  else { return  }
+        guard let datasource = self.datasource , let swipeContentView = self.swipeContentView , let mainView = self.mainView else { return  }
         
         var contentX : CGFloat = 0.0
-        if datasource.hideHeaderButton(self) == false {
+     
+     if datasource.hideHeaderButton(self) == false {
             contentX = datasource.heightOfHeaderButton(self) + datasource.marginOfHeaderButton(self)
             
-            self.headerContainerButton.translatesAutoresizingMaskIntoConstraints = false
-            self.addConstraints([
-                NSLayoutConstraint(item: self.headerContainerButton, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0),
-                NSLayoutConstraint(item: self.headerContainerButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: datasource.heightOfHeaderButton(self)),
-                NSLayoutConstraint(item: self.headerContainerButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0)
-                ])
+           self.headerContainerButton.frame.origin.y = 0
+           self.headerContainerButton.frame.size.width = mainView.frame.size.width / 12
+           self.headerContainerButton.center.x = mainView.center.x -  mainView.frame.size.width / 24
+           self.headerContainerButton.frame.size.height = datasource.heightOfHeaderButton(self)
+        
         }
         
-        swipeContentView.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraints([
-            NSLayoutConstraint(item: swipeContentView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: contentX),
-            NSLayoutConstraint(item: swipeContentView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: swipeContentView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: swipeContentView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0),
-            ])
+       swipeContentView.frame = CGRect(x:0 , y: contentX, width: self.frame.width, height: self.frame.height)
+ 
     }
     
     public func openViewPage()  {
         
-        guard let mainView = self.mainView, let datasource = self.datasource else {
+        guard let mainView = self.mainView, let datasource = self.datasource , let delegate = self.delegate else {
             return
         }
-        self.delegate?.swipeUpViewWillOpen(self)
+        delegate.swipeUpViewWillOpen(self)
         
         mainView.addSubview(self)
-        self.frame = CGRect(x: 0, y: mainView.frame.height , width: mainView.frame.width, height: 0);
         
+       self.frame = CGRect(x: 0, y: mainView.frame.height , width: mainView.frame.width, height: 0);
+       
         adjustMyHeight(heigthPercentageIndex: datasource.firstOpenHeightPercentageIndex(self))
     }
     
     public  func closeViewPage()  {
         
-        guard let mainView = self.mainView else { return  }
+        guard let mainView = self.mainView  , let delegate = self.delegate else { return  }
         
-        self.delegate?.swipeUpViewWillOpen(self)
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
+        delegate.swipeUpViewWillOpen(self)
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
             
             self.frame = CGRect(x: 0, y: mainView.frame.height , width: mainView.frame.width, height: mainView.frame.height);
             
         }) { (_) in
-            self.delegate?.swipeUpViewDidClose(self)
+            delegate.swipeUpViewDidClose(self)
             self.isOpen = false
             self.removeFromSuperview()
         }
