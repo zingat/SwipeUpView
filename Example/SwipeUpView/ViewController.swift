@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     
     lazy var swipeUpView : SwipeUpView = {
         let mg = SwipeUpView(frame: .zero, mainView: self.view)
-        //mg.delegate = self
+        mg.delegate = self
         mg.datasource = self
         
         mg.swipeContentView = bottomView

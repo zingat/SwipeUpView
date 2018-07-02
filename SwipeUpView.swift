@@ -23,7 +23,6 @@ public class SwipeUpView: UIView  {
         super.init(frame: frame)
     
         self.isUserInteractionEnabled = true
-        self.backgroundColor = .green
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickedHeaderButton)))
         
         self.mainView = mainView
@@ -168,7 +167,7 @@ public class SwipeUpView: UIView  {
         activeIndex = heigthPercentageIndex
         let heigthPercentage : CGFloat = datasource.heightPercentages(self)[heigthPercentageIndex]
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .curveEaseInOut, animations: {
             var frame = self.frame
             frame.origin.y = mainView.frame.size.height * (1.0 - heigthPercentage)
             frame.size.height = mainView.frame.size.height * heigthPercentage
@@ -194,7 +193,6 @@ public class SwipeUpView: UIView  {
         let width = mainView.frame.size.width
         swipeContentView.layer.cornerRadius = 6
         
-        self.swipeContentView?.backgroundColor = .white
         self.addGestureRecognizer(swipeGestureRecognizerUp)
         self.addGestureRecognizer(swipeGestureRecognizerDown)
         
@@ -217,12 +215,14 @@ public class SwipeUpView: UIView  {
         var contentX : CGFloat = 0.0
      
      if datasource.hideHeaderButton(self) == false {
-            contentX = datasource.heightOfHeaderButton(self) + datasource.marginOfHeaderButton(self)
-            
-           self.headerContainerButton.frame.origin.y = 0
+        
+           contentX = datasource.heightOfHeaderButton(self) + datasource.marginOfHeaderButton(self)
+        
+           self.headerContainerButton.frame.origin.y = 3
            self.headerContainerButton.frame.size.width = mainView.frame.size.width / 12
-           self.headerContainerButton.frame.origin.x = mainView.frame.origin.x -  mainView.frame.size.width / 24
+           self.headerContainerButton.frame.origin.x = mainView.center.x -  mainView.frame.size.width / 24
            self.headerContainerButton.frame.size.height = datasource.heightOfHeaderButton(self)
+           contentX = contentX + 3
         
         }
         
@@ -249,7 +249,8 @@ public class SwipeUpView: UIView  {
         guard let mainView = self.mainView  , let delegate = self.delegate else { return  }
         
         delegate.swipeUpViewWillOpen(self)
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
+        
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .curveEaseInOut, animations: {
             
             self.frame = CGRect(x: 0, y: mainView.frame.height , width: mainView.frame.width, height: mainView.frame.height);
             
