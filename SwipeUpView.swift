@@ -247,7 +247,7 @@ public class SwipeUpView: UIView  {
         guard let mainView = self.mainView else { return  }
         
         self.delegate?.swipeUpViewWillOpen(self)
-        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.7, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
             
             self.frame = CGRect(x: 0, y: mainView.frame.height , width: mainView.frame.width, height: mainView.frame.height);
             
