@@ -29,8 +29,16 @@ extension ViewController : SwipeUpViewDatasource {
         return 8.0
     }
 
+    func widthOfHeaderButton (_ swipeUpView : SwipeUpView) -> CGFloat {
+        return 50.0
+    }
+
     func marginOfHeaderButton (_ swipeUpView : SwipeUpView) -> CGFloat {
         return 4.0
+    }
+
+    func colorOfHeaderButton (_ swipeUpView : SwipeUpView) -> UIColor {
+        return .white
     }
 
     func firstOpenHeightPercentageIndex(_ swipeUpView: SwipeUpView) -> Int {
@@ -38,7 +46,7 @@ extension ViewController : SwipeUpViewDatasource {
     }
 
     func heightPercentages(_ swipeUpView: SwipeUpView) -> [CGFloat] {
-        return [0.1 ,0.5, 1]
+        return [0.1, 0.5, 0.95]
     }
 
 }
@@ -83,4 +91,4 @@ Zingat Mobile Team
 
 ## License
 
-RateMe is available under the MIT license. See the LICENSE file for more info.
+SwipUpView is available under the MIT license. See the LICENSE file for more info.
