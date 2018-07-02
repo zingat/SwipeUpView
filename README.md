@@ -5,6 +5,10 @@
 [![License](https://img.shields.io/cocoapods/l/SwipeUpView.svg?style=flat)](https://cocoapods.org/pods/SwipeUpView)
 [![Platform](https://img.shields.io/cocoapods/p/SwipeUpView.svg?style=flat)](https://cocoapods.org/pods/SwipeUpView)
 
+## SCREENSHOT
+
+<img src="https://raw.githubusercontent.com/zingat/SwipeUpView/master/SwipeUpView.gif" width="200px">
+
 ## Installation
 
 SwipeUpView is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
