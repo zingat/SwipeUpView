@@ -8,7 +8,7 @@
 import UIKit
 
 
-public protocol SwipeUpViewDatasource : class {
+@objc public protocol SwipeUpViewDatasource : class {
     
     func firstOpenHeightPercentageIndex (_ swipeUpView : SwipeUpView) -> Int
     func heightPercentages (_ swipeUpView : SwipeUpView) -> [CGFloat]

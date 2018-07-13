@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwipeUpView'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'You can easly create swipeable views by using SwipeUpView'
 
 # This description is used to generate tags and improve search results.
@@ -31,6 +31,7 @@ SwipeUpView is used to create swipeable views. This is very useful to build swip
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.0' }
 
   s.source_files = 'SwipeUpView/Classes/**/*'
   

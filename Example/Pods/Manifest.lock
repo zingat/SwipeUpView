@@ -1,5 +1,5 @@
 PODS:
-  - SwipeUpView (0.1.0)
+  - SwipeUpView (1.0.0)
 
 DEPENDENCIES:
   - SwipeUpView (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  SwipeUpView: 9b583dae9c49dc616d8296e7c22589e898817ec2
+  SwipeUpView: 9991ad5aafebf983e7e4186b1d6bd35841351ee0
 
 PODFILE CHECKSUM: 19834cadc67c783a23fab44ad37f5a8e87430090
 
