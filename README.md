@@ -41,13 +41,31 @@ extension ViewController : SwipeUpViewDatasource {
         return .white
     }
 
-    func firstOpenHeightPercentageIndex(_ swipeUpView: SwipeUpView) -> Int {
+    func firstOpenHeightIndex(_ swipeUpView: SwipeUpView) -> Int {
         return 1
+    }
+
+    ////SETTING HEIGHTS
+    //if heights returns a non-empty CGFloat array, heightPercentages return value is not important
+    func heights(_ swipeUpView: SwipeUpView) -> [CGFloat] {
+        return [100, 300, 600]
+    }
+    
+    func heightPercentages(_ swipeUpView: SwipeUpView) -> [CGFloat] {
+        return [0.1, 0.5, 0.95]
+    }
+    ////
+
+    ////SETTING HEIGHTS - 2
+    //if heights returns an empty CGFloat array, heightPercentages return value will be used
+    func heights(_ swipeUpView: SwipeUpView) -> [CGFloat] {
+        return []
     }
 
     func heightPercentages(_ swipeUpView: SwipeUpView) -> [CGFloat] {
         return [0.1, 0.5, 0.95]
     }
+    ////
 
 }
 ```

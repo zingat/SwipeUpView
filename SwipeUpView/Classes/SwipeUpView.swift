@@ -62,37 +62,27 @@ public class SwipeUpView: UIView  {
     
     @objc func handleButtonPanGesture(recognizer : UIPanGestureRecognizer){
         
-        guard let mainView = self.mainView , let datasource = self.datasource else {  return }
+        guard let mainView = self.mainView else {  return }
         
         if recognizer.state == .ended {
             let index = findNewHeightPercentageIndex()
-            
-            let stateHeightPercentages = datasource.heightPercentages(self)
-            
-            adjustHeaderButtonDirection(stateHeightPercentagesCount: stateHeightPercentages.count, index: index)
-            
-            self.adjustMyHeight(heigthPercentageIndex: findNewHeightPercentageIndex());
+            adjustHeaderButtonDirection(index: index)
+            self.adjustMyHeight(heigthIndex: findNewHeightPercentageIndex());
         }
         
         //mainView.bringSubview(toFront: self)
         
         let translationRec = recognizer.translation(in: mainView)
-        
         self.center = CGPoint(x: self.center.x , y: self.center.y + translationRec.y)
-        
         
         var f = self.frame;
         f.size.height = mainView.frame.height - f.origin.y;
-        
-        if f.size.height <= mainView.frame.height || f.origin.y > 0{
-            self.frame = f;
-        }
+
+        self.frame = f;
         
         recognizer.setTranslation(.zero, in: mainView)
     }
     
-    
-    //TODO BAKACAZ
     lazy var swipeGestureRecognizerDown : UISwipeGestureRecognizer = {
         let  sg = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGestureDown(sender :)))
         sg.direction = .down
@@ -109,7 +99,7 @@ public class SwipeUpView: UIView  {
     
     
     @objc func handleSwipeGestureDown(sender : UISwipeGestureRecognizer)  {
-        adjustMyHeight(heigthPercentageIndex: setupNewIndexForIndex(index: 0))
+        adjustMyHeight(heigthIndex: setupNewIndexForIndex(index: 0))
         isHeaderButtonDirectionToTop = true
     }
     @objc func handleSwipeGestureUp(sender : UISwipeGestureRecognizer)  {
@@ -117,7 +107,7 @@ public class SwipeUpView: UIView  {
         
         let stateHeightPercentages = datasource.heightPercentages(self)
         
-        adjustMyHeight(heigthPercentageIndex: setupNewIndexForIndex(index: stateHeightPercentages.count - 1))
+        adjustMyHeight(heigthIndex: setupNewIndexForIndex(index: stateHeightPercentages.count - 1))
         isHeaderButtonDirectionToTop = false
     }
     
@@ -125,6 +115,10 @@ public class SwipeUpView: UIView  {
     private func findNewHeightPercentageIndex() -> Int{
         guard let mainView = self.mainView, let datasource = self.datasource else {
             return 0
+        }
+        
+        if(datasource.heights(self).count > 0){
+            return findNewHeightIndex();
         }
         
         let ratio = self.frame.height / mainView.frame.height;
@@ -155,33 +149,72 @@ public class SwipeUpView: UIView  {
         return activeIndex
     }
     
-    @objc func onClickedHeaderButton(){
-        guard  let datasource = self.datasource else { return }
+    private func findNewHeightIndex() -> Int{
+        guard let datasource = self.datasource else {
+            return 0
+        }
         
-        let stateHeightPercentages = datasource.heightPercentages(self)
+        let currentHight = self.frame.height;
         
-        let index = findNewHeightPercentageIndex()
-        adjustHeaderButtonDirection(stateHeightPercentagesCount: stateHeightPercentages.count, index: index)
-        adjustMyHeight(heigthPercentageIndex: setupNewIndexForIndex(index: index))
+        let stateHeights = datasource.heights(self)
+        let activeHeight = stateHeights[activeIndex]
+        
+        if(currentHight < activeHeight && activeIndex > 0){
+            for index in (0 ... activeIndex-1).reversed() {
+                if stateHeights[index] < currentHight{
+                    return index
+                }
+            }
+            
+            return 0
+        }
+        
+        if(currentHight > activeHeight && activeIndex < stateHeights.count - 1){
+            for index in activeIndex+1 ..< stateHeights.count{
+                if stateHeights[index] > currentHight{
+                    return index
+                }
+            }
+            
+            return stateHeights.count - 1
+        }
+        
+        return activeIndex
     }
     
-    private func adjustMyHeight(heigthPercentageIndex : Int){
+    @objc func onClickedHeaderButton(){
+        let index = findNewHeightPercentageIndex()
+        adjustHeaderButtonDirection(index: index)
+        adjustMyHeight(heigthIndex: setupNewIndexForIndex(index: index))
+    }
+    
+    private func adjustMyHeight(heigthIndex : Int){
         guard let mainView = self.mainView, let datasource = self.datasource  else { return  }
         
-        self.delegate?.swipeUpViewStateWillChange(self, stateIndex: heigthPercentageIndex)
+        self.delegate?.swipeUpViewStateWillChange(self, stateIndex: heigthIndex)
         
-        activeIndex = heigthPercentageIndex
-        let heigthPercentage : CGFloat = datasource.heightPercentages(self)[heigthPercentageIndex]
+        activeIndex = heigthIndex
+        
+        let heightPercentages = datasource.heightPercentages(self)
+        let heights = datasource.heights(self)
+        
+        var newHeight: CGFloat = 0.0;
+        if(heights.count > 0){
+            newHeight = heights[heigthIndex];
+        }else{
+            newHeight = mainView.frame.size.height * heightPercentages[heigthIndex];
+        }
+        
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
             var frame = self.frame
-            frame.origin.y = mainView.frame.size.height * (1.0 - heigthPercentage)
-            frame.size.height = mainView.frame.size.height * heigthPercentage
+            frame.origin.y = mainView.frame.size.height - newHeight
+            frame.size.height = newHeight
             self.frame = frame
             
             self.layoutIfNeeded()
         }, completion: { (_) in
-            self.delegate?.swipeUpViewStateDidChange(self, stateIndex: heigthPercentageIndex)
+            self.delegate?.swipeUpViewStateDidChange(self, stateIndex: heigthIndex)
             if(self.isOpen == false){
                 self.isOpen = true
                 self.delegate?.swipeUpViewDidOpen(self)
@@ -248,7 +281,7 @@ public class SwipeUpView: UIView  {
         mainView.addSubview(self)
         self.frame = CGRect(x: 0, y: mainView.frame.height , width: mainView.frame.width, height: 0);
         
-        adjustMyHeight(heigthPercentageIndex: datasource.firstOpenHeightPercentageIndex(self))
+        adjustMyHeight(heigthIndex: datasource.firstOpenHeightIndex(self))
     }
     
     public  func closeViewPage()  {
@@ -268,8 +301,20 @@ public class SwipeUpView: UIView  {
     }
     
     
-    func adjustHeaderButtonDirection(stateHeightPercentagesCount : Int, index : Int){
-        if index == stateHeightPercentagesCount - 1 {
+    func adjustHeaderButtonDirection(index : Int){
+        guard let datasource = self.datasource else {
+            return
+        }
+        
+        let stateHeightPercentages = datasource.heightPercentages(self)
+        let stateHeights = datasource.heights(self)
+        
+        var hCount = stateHeights.count;
+        if(hCount == 0){
+            hCount = stateHeightPercentages.count;
+        }
+        
+        if index == hCount - 1 {
             self.isHeaderButtonDirectionToTop = false
         }
         if  index == 0 {

@@ -75,8 +75,12 @@ extension ViewController : SwipeUpViewDatasource ,SwipeUpViewDelegate {
         return .white
     }
     
-    func firstOpenHeightPercentageIndex(_ swipeUpView: SwipeUpView) -> Int {
+    func firstOpenHeightIndex(_ swipeUpView: SwipeUpView) -> Int {
         return 1
+    }
+    
+    func heights(_ swipeUpView: SwipeUpView) -> [CGFloat] {
+        return [100, 300, 600]
     }
     
     func heightPercentages(_ swipeUpView: SwipeUpView) -> [CGFloat] {
