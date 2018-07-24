@@ -2,10 +2,10 @@
 
 ## [v1.2.0] (https://github.com/zingat/SwipeUpView/releases/tag/1.2.0)
 - These methods were added. 
-- - goToUp(stepCount : Int)
-- - goToTop()
-- - goToDown(stepCount : Int)
-- - goToBottom()
+  - goToUp(stepCount : Int)
+  - goToTop()
+  - goToDown(stepCount : Int)
+  - goToBottom()
 
 ## [v1.1.0] (https://github.com/zingat/SwipeUpView/releases/tag/1.1.0)
 - Adding static heights 
