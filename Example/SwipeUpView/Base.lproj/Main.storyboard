@@ -34,14 +34,60 @@
                                     <action selector="onClickedButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="jpI-8e-jzL"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="jzg-UX-IT5">
+                                <rect key="frame" x="52" y="37" width="270" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2le-qf-oSh">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="Up">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onClickedUpButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="nrM-wG-iOc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WPk-5E-BUk">
+                                        <rect key="frame" x="70" y="0.0" width="39" height="30"/>
+                                        <state key="normal" title="Down">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onClickedDownButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="UGS-A1-qfZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6HT-Pr-NYe">
+                                        <rect key="frame" x="149" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="Top">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onClickedTopButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YIM-CL-24y"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13l-LH-xsV">
+                                        <rect key="frame" x="219" y="0.0" width="51" height="30"/>
+                                        <state key="normal" title="Bottom">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onClickedBottomButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="MYE-rr-AYq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="jzg-UX-IT5" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="0ij-GF-uLM"/>
+                            <constraint firstItem="jzg-UX-IT5" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="17" id="fNk-Hv-tIv"/>
                             <constraint firstItem="fGp-Jy-OjX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="h9x-dg-w7P"/>
                             <constraint firstItem="fGp-Jy-OjX" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="ixp-UR-2mm"/>
                             <constraint firstItem="fGp-Jy-OjX" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="80" id="nIF-MJ-gwH"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonSet" destination="jzg-UX-IT5" id="c25-91-11F"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

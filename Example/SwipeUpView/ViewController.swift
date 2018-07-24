@@ -12,6 +12,8 @@ import SwipeUpView
 class ViewController: UIViewController {
     var isOpenCloseControl = true
     
+    @IBOutlet weak var buttonSet: UIStackView!
+    
     lazy var bottomView : BottomView = {
         return BottomView(frame:.zero)
     }()
@@ -43,11 +45,28 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        buttonSet.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func onClickedUpButton(_ sender: Any) {
+        swipeUpView.goToUp(stepCount: 1)
+    }
+    
+    @IBAction func onClickedDownButton(_ sender: Any) {
+        swipeUpView.goToDown(stepCount: 1)
+    }
+    
+    @IBAction func onClickedTopButton(_ sender: Any) {
+        swipeUpView.goToTop()
+    }
+    
+    @IBAction func onClickedBottomButton(_ sender: Any) {
+        swipeUpView.goToBottom()
     }
     
     
@@ -103,6 +122,7 @@ extension ViewController : SwipeUpViewDatasource ,SwipeUpViewDelegate {
     
     func swipeUpViewWillOpen (_ swipeUpView : SwipeUpView){
         NSLog("SwipeUpView state will open")
+        buttonSet.isHidden = false
     }
     
     func swipeUpViewDidOpen (_ swipeUpView : SwipeUpView){
@@ -111,6 +131,7 @@ extension ViewController : SwipeUpViewDatasource ,SwipeUpViewDelegate {
     
     func swipeUpViewWillClose (_ swipeUpView : SwipeUpView){
         NSLog("SwipeUpView state will close")
+        buttonSet.isHidden = true
     }
     
     func swipeUpViewDidClose (_ swipeUpView : SwipeUpView){

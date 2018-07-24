@@ -67,7 +67,7 @@ public class SwipeUpView: UIView  {
         if recognizer.state == .ended {
             let index = findNewHeightPercentageIndex()
             adjustHeaderButtonDirection(index: index)
-            self.adjustMyHeight(heigthIndex: findNewHeightPercentageIndex());
+            self.adjustMyHeight(heigthIndex: index);
         }
         
         //mainView.bringSubview(toFront: self)
@@ -288,7 +288,7 @@ public class SwipeUpView: UIView  {
         
         guard let mainView = self.mainView else { return  }
         
-        self.delegate?.swipeUpViewWillOpen(self)
+        self.delegate?.swipeUpViewWillClose(self)
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
             
             self.frame = CGRect(x: 0, y: mainView.frame.height , width: mainView.frame.width, height: mainView.frame.height);
@@ -300,19 +300,24 @@ public class SwipeUpView: UIView  {
         }
     }
     
-    
-    func adjustHeaderButtonDirection(index : Int){
+    func heightCount() -> Int {
         guard let datasource = self.datasource else {
-            return
+            return 0
         }
         
         let stateHeightPercentages = datasource.heightPercentages(self)
         let stateHeights = datasource.heights(self)
         
-        var hCount = stateHeights.count;
-        if(hCount == 0){
-            hCount = stateHeightPercentages.count;
+        let hCount = stateHeights.count
+        if(hCount > 0) {
+            return hCount
         }
+        
+        return stateHeightPercentages.count
+    }
+    
+    func adjustHeaderButtonDirection(index : Int){
+        let hCount = heightCount();
         
         if index == hCount - 1 {
             self.isHeaderButtonDirectionToTop = false
@@ -320,6 +325,38 @@ public class SwipeUpView: UIView  {
         if  index == 0 {
             self.isHeaderButtonDirectionToTop = true
         }
+    }
+    
+    public func goToUp(stepCount : Int){
+        let hCount = heightCount();
+        var sCount = stepCount
+        if(activeIndex + sCount >= hCount){
+            sCount = hCount - activeIndex - 1
+        }
+        if(sCount < 0){
+            return
+        }
+        
+        self.adjustMyHeight(heigthIndex: activeIndex + sCount);
+    }
+    
+    public func goToTop(){
+        let hCount = heightCount();
+        self.adjustMyHeight(heigthIndex: hCount - 1);
+    }
+    
+    public func goToDown(stepCount : Int){
+        var sCount = stepCount
+        
+        if(activeIndex - sCount < 0){
+            sCount = activeIndex
+        }
+        
+        self.adjustMyHeight(heigthIndex: activeIndex - sCount);
+    }
+    
+    public func goToBottom(){
+        self.adjustMyHeight(heigthIndex: 0);
     }
     
     
