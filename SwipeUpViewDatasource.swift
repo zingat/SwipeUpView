@@ -8,9 +8,10 @@
 import UIKit
 
 
-public protocol SwipeUpViewDatasource : class {
+@objc public protocol SwipeUpViewDatasource : class {
     
-    func firstOpenHeightPercentageIndex (_ swipeUpView : SwipeUpView) -> Int
+    func firstOpenHeightIndex (_ swipeUpView : SwipeUpView) -> Int
+    func heights (_ swipeUpView : SwipeUpView) -> [CGFloat]
     func heightPercentages (_ swipeUpView : SwipeUpView) -> [CGFloat]
     
     func hideHeaderButton (_ swipeUpView : SwipeUpView) -> Bool

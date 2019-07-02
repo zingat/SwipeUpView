@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol SwipeUpViewDelegate : class {
+@objc public protocol SwipeUpViewDelegate : class {
     
     func swipeUpViewStateWillChange (_ swipeUpView : SwipeUpView, stateIndex : Int);
     func swipeUpViewStateDidChange (_ swipeUpView : SwipeUpView, stateIndex : Int);
