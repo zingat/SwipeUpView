@@ -31,7 +31,7 @@ SwipeUpView is used to create swipeable views. This is very useful to build swip
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.0' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
 
   s.source_files = 'SwipeUpView/Classes/**/*'
   
