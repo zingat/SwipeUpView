@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwipeUpView'
-  s.version          = '1.2.1'
+  s.version          = '1.2.0'
   s.summary          = 'You can easly create swipeable views by using SwipeUpView'
 
 # This description is used to generate tags and improve search results.
