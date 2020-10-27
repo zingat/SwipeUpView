@@ -8,20 +8,20 @@
 import UIKit
 
 public class SwipeUpView: UIView  {
-  
+    
     private var isHeaderButtonDirectionToTop = true
     private var activeIndex = 0
     private var isOpen = false
     
     private weak var mainView : UIView?
     
-    public weak var delegate: SwipeUpViewDelegate?
-    public weak var datasource : SwipeUpViewDatasource?
+    @objc public weak var delegate: SwipeUpViewDelegate?
+    @objc public weak var datasource : SwipeUpViewDatasource?
     
     
-    public init(frame: CGRect, mainView: UIView){
+    @objc public init(frame: CGRect, mainView: UIView){
         super.init(frame: frame)
-    
+        
         self.isUserInteractionEnabled = true
         self.backgroundColor = .clear
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickedHeaderButton)))
@@ -31,14 +31,14 @@ public class SwipeUpView: UIView  {
     }
     
     
-    public var swipeContentView : UIView? {
+    @objc public var swipeContentView : UIView? {
         didSet {
             addItemContainerView()
         }
     }
     
     
-    public lazy var headerContainerButton : UIButton = {
+    @objc public lazy var headerContainerButton : UIButton = {
         
         let button = UIButton(type: UIButtonType.system)
         button.setTitle("", for: UIControlState.normal)
@@ -77,7 +77,7 @@ public class SwipeUpView: UIView  {
         
         var f = self.frame;
         f.size.height = mainView.frame.height - f.origin.y;
-
+        
         self.frame = f;
         
         recognizer.setTranslation(.zero, in: mainView)
@@ -145,7 +145,7 @@ public class SwipeUpView: UIView  {
             
             return stateHeightPercentages.count - 1
         }
-
+        
         return activeIndex
     }
     
@@ -271,7 +271,7 @@ public class SwipeUpView: UIView  {
         
     }
     
-    public func openViewPage()  {
+    @objc public func openViewPage()  {
         
         guard let mainView = self.mainView, let datasource = self.datasource else {
             return
@@ -284,7 +284,7 @@ public class SwipeUpView: UIView  {
         adjustMyHeight(heigthIndex: datasource.firstOpenHeightIndex(self))
     }
     
-    public  func closeViewPage()  {
+    @objc public  func closeViewPage()  {
         
         guard let mainView = self.mainView else { return  }
         
@@ -300,7 +300,7 @@ public class SwipeUpView: UIView  {
         }
     }
     
-    func heightCount() -> Int {
+    @objc func heightCount() -> Int {
         guard let datasource = self.datasource else {
             return 0
         }
@@ -327,7 +327,7 @@ public class SwipeUpView: UIView  {
         }
     }
     
-    public func goToUp(stepCount : Int){
+    @objc public func goToUp(stepCount : Int){
         let hCount = heightCount();
         var sCount = stepCount
         if(activeIndex + sCount >= hCount){
@@ -340,12 +340,12 @@ public class SwipeUpView: UIView  {
         self.adjustMyHeight(heigthIndex: activeIndex + sCount);
     }
     
-    public func goToTop(){
+    @objc public func goToTop(){
         let hCount = heightCount();
         self.adjustMyHeight(heigthIndex: hCount - 1);
     }
     
-    public func goToDown(stepCount : Int){
+    @objc public func goToDown(stepCount : Int){
         var sCount = stepCount
         
         if(activeIndex - sCount < 0){
@@ -355,7 +355,7 @@ public class SwipeUpView: UIView  {
         self.adjustMyHeight(heigthIndex: activeIndex - sCount);
     }
     
-    public func goToBottom(){
+    @objc public func goToBottom(){
         self.adjustMyHeight(heigthIndex: 0);
     }
     
